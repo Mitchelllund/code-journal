@@ -1,0 +1,88 @@
+body {
+  background: #f0f0f0;
+  font-family: "Proza Libre", sans-serif;
+}
+
+input,
+textarea {
+  border-radius: 4px;
+  border-color: #b6b6b6;
+  border-style: 1px;
+  resize: none;
+  font-family: "Proza Libre", sans-serif;
+}
+
+.text-cj {
+  width: 840px;
+}
+
+.head-column-full {
+  width: 100%;
+}
+
+.head-container {
+  margin: 0 auto;
+  padding: 0;
+}
+
+.column-full {
+  display: flex;
+  flex-direction: column;
+}
+
+.column-half {
+  display: flex;
+  flex-direction: column;
+}
+
+.placeholder {
+  background-image: url("/images/placeholder-image-square.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 350px;
+  width: 100%;
+}
+
+.button {
+  border-radius: 4px;
+  height: 30px;
+  width: 80px;
+  border-style: none;
+  padding-bottom: 3px;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.color-purple {
+  background-color: #562b81;
+}
+
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+.margin-bottom-10 {
+  margin-bottom: 10px;
+}
+
+.justify-right {
+  justify-content: right;
+}
+
+.color-white {
+  color: white;
+}
+
+.font-open-sans {
+  font-family: "Open Sans", sans-serif;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.weight-600 {
+  font-weight: 600;
+}

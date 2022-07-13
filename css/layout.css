@@ -32,3 +32,9 @@
     width: 50%;
   }
 }
+
+.head-column-full {
+  max-width: 890px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
