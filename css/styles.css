@@ -12,8 +12,22 @@ textarea {
   font-family: "Proza Libre", sans-serif;
 }
 
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 50px;
+}
+
+.head-column-full > h2,
+h3 {
+  white-space: normal;
+}
+
 .text-cj {
-  width: 840px;
+  width: 250px;
 }
 
 .head-column-full {
@@ -41,6 +55,7 @@ textarea {
   background-position: center;
   height: 350px;
   width: 100%;
+  border-radius: 4px;
 }
 
 .button {
@@ -59,6 +74,10 @@ textarea {
   background-color: #562b81;
 }
 
+.margin-0 {
+  margin: 0;
+}
+
 .margin-top-20 {
   margin-top: 20px;
 }
@@ -67,8 +86,20 @@ textarea {
   margin-bottom: 10px;
 }
 
+.margin-bottom-30 {
+  margin-bottom: 30px;
+}
+
 .justify-right {
   justify-content: right;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-space-between {
+  justify-content: space-between;
 }
 
 .color-white {
@@ -83,6 +114,22 @@ textarea {
   align-items: center;
 }
 
+.align-flex-end {
+  align-items: flex-end;
+}
+
 .weight-600 {
   font-weight: 600;
+}
+
+.flex-direction-row {
+  flex-direction: row;
+}
+
+.flex {
+  display: flex;
+}
+
+.pointer {
+  cursor: default;
 }

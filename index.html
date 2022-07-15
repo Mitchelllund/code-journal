@@ -22,8 +22,9 @@
   <header>
     <div class="head-container">
       <div class="row width-100 color-purple">
-        <div class="head-column-full">
+        <div class="head-column-full flex align-center">
           <h2 class="color-white text-cj">Code Journal</h2>
+          <h3 class="color-white text-cj pointer" id="entries-button" >Entries</h3>
         </div>
       </div>
     </div>
@@ -64,9 +65,20 @@
             </div>
           </div>
           <div class="row margin-top-20 justify-right">
-            <button class="button color-white color-purple font-open-sans" type="submit" id="save">Save</button>
+            <div class="column-full align-flex-end">
+              <button class="button color-white color-purple font-open-sans" type="submit" id="save">Save</button>
+            </div>
           </div>
         </form>
+      </div>
+      <div data-view="entries" class="hidden" id="entries-page">
+        <div class="row">
+          <div class="column-full flex-direction-row align-center justify-space-between">
+            <h1>Entries</h1>
+            <button class="button color-white color-purple font-open-sans" type="submit" id="new" data-view="new">NEW</button>
+          </div>
+        </div>
+        <ul id="entries"></ul>
       </div>
   </main>
   <script src="js/data.js"></script>
