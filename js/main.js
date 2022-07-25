@@ -6,6 +6,7 @@ var $entriesPage = document.querySelector('#entries-page');
 var $new = document.querySelector('#new');
 var $entriesButton = document.querySelector('#entries-button');
 var $entries = document.querySelector('#entries');
+var $li = $entries.childNodes;
 
 $photoUrl.addEventListener('input', function (event) {
   $placeholder.style.setProperty('background-image', 'url(' + event.target.value + ')');
@@ -13,21 +14,37 @@ $photoUrl.addEventListener('input', function (event) {
 
 $entryForm.addEventListener('submit', function (event) {
   event.preventDefault();
-  var inputValues = {};
-  inputValues.title = $formId.title.value;
-  inputValues.photoUrl = $formId.photoUrl.value;
-  inputValues.notes = $formId.notes.value;
-  inputValues.nextEntryId = data.nextEntryId++;
-  $placeholder.style.setProperty('background-image', 'url(/images/placeholder-image-square.jpg)');
-  $formId.reset();
-  data.entries.unshift(inputValues);
-  $entriesPage.classList.remove('hidden');
-  $entryForm.classList.add('hidden');
-  $entries.prepend(renderEntry(inputValues));
+  if (data.editing === null) {
+    var inputValues = {};
+    inputValues.title = $formId.title.value;
+    inputValues.photoUrl = $formId.photoUrl.value;
+    inputValues.notes = $formId.notes.value;
+    inputValues.nextEntryId = data.nextEntryId++;
+    $placeholder.style.setProperty('background-image', 'url(/images/placeholder-image-square.jpg)');
+    $formId.reset();
+    data.entries.unshift(inputValues);
+    $entriesPage.classList.remove('hidden');
+    $entryForm.classList.add('hidden');
+    $entries.prepend(renderEntry(inputValues));
+  } else if (data.editing !== null) {
+    var updatedValue = {};
+    updatedValue.title = $formId.title.value;
+    updatedValue.photoUrl = $formId.photoUrl.value;
+    updatedValue.notes = $formId.notes.value;
+    updatedValue.nextEntryId = data.editing.nextEntryId;
+    data.entries.splice(data.entries.length - data.editing.nextEntryId, 1, updatedValue);
+    $entriesPage.classList.remove('hidden');
+    $entryForm.classList.add('hidden');
+    var entryLocation = $li.item(data.entries.length - data.editing.nextEntryId);
+    entryLocation.replaceWith(renderEntry(updatedValue));
+    data.editing = null;
+  }
 });
 
+var targetEntry = 0;
 function renderEntry(entry) {
   var list = document.createElement('li');
+  list.setAttribute('data-entry-id', targetEntry++);
 
   var row = document.createElement('div');
   row.setAttribute('class', 'row');
@@ -45,11 +62,18 @@ function renderEntry(entry) {
   columnHalfDiv2.setAttribute('class', 'column-half');
   row.appendChild(columnHalfDiv2);
 
+  var columnHalfDiv3 = document.createElement('div');
+  columnHalfDiv3.setAttribute('class', 'column-fourth justify-space-between');
+  columnHalfDiv2.appendChild(columnHalfDiv3);
   var header = document.createElement('h3');
   header.setAttribute('class', 'margin-0');
   var headerTitle = document.createTextNode(entry.title);
   header.appendChild(headerTitle);
-  columnHalfDiv2.appendChild(header);
+  columnHalfDiv3.appendChild(header);
+  var edit = document.createElement('i');
+  edit.setAttribute('class', 'fa-solid fa-pen align-self-center');
+  edit.setAttribute('id', 'edit');
+  columnHalfDiv3.appendChild(edit);
 
   var paragraph = document.createElement('p');
   var notes = document.createTextNode(entry.notes);
@@ -91,3 +115,16 @@ function pageRefresh(string) {
     $entriesPage.classList.add('hidden');
   }
 }
+
+$entries.addEventListener('click', function (event) {
+  if (event.target.getAttribute('id') === 'edit') {
+    $entriesPage.classList.add('hidden');
+    $entryForm.classList.remove('hidden');
+    var targetEntry = event.target.closest('li').getAttribute('data-entry-id');
+    data.editing = data.entries[targetEntry];
+    $formId.title.value = data.editing.title;
+    $formId.photoUrl.value = data.editing.photoUrl;
+    $formId.notes.value = data.editing.notes;
+    $placeholder.style.setProperty('background-image', 'url(' + data.editing.photoUrl + ')');
+  }
+});
