@@ -35,6 +35,8 @@ $entryForm.addEventListener('submit', function (event) {
     var targetEntry = data.editing;
     targetEntry.replaceWith(renderEntry(entryObject));
     data.entries[data.entries.length - entryObject.entryId] = entryObject;
+    $entriesPage.classList.remove('hidden');
+    $entryForm.classList.add('hidden');
   }
 });
 
