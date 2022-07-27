@@ -26,6 +26,10 @@ h3 {
   white-space: normal;
 }
 
+i {
+  color: #562b81;
+}
+
 .text-cj {
   width: 250px;
 }
@@ -47,6 +51,11 @@ h3 {
 .column-half {
   display: flex;
   flex-direction: column;
+}
+
+.column-fourth {
+  width: 100%;
+  display: flex;
 }
 
 .placeholder {
@@ -112,6 +121,10 @@ h3 {
 
 .align-center {
   align-items: center;
+}
+
+.align-self-center {
+  align-self: center;
 }
 
 .align-flex-end {
