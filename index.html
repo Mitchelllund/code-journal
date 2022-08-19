@@ -31,6 +31,23 @@
   </header>
   <main>
     <div class="container">
+      <div class="row ">
+        <div id="myModal" class="modal">
+          <div class="modal-content">
+            <div class="row">
+              <div class="column-full">
+                <h3>Are you sure you want to delete this entry?</h3>
+              </div>
+            </div>
+            <div class="row padding-bot-10 padding-top-10">
+              <div class="column-full  font-open-sans flex-direction-row justify-space-between">
+                <button class="cancel">CANCEL</button>
+                <button class="confirm">CONFIRM</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div data-view="entry-form" id="entry-form">
         <h1>New Entry</h1>
         <form id="form-id">
@@ -64,9 +81,14 @@
               required></textarea>
             </div>
           </div>
-          <div class="row margin-top-20 justify-right">
-            <div class="column-full align-flex-end">
-              <button class="button color-white color-purple font-open-sans" type="submit" id="save">Save</button>
+          <div class="row margin-top-20 ">
+            <div class="column-full align-center justify-right flex-direction-row justify-space-between">
+              <div >
+                <a class="delete-entry-div hidden" href="#">
+                  <h4 class="delete-entry font-open-sans">Delete Entry</h4>
+                </a>
+              </div>
+              <button class="button color-white color-purple font-open-sans " type="submit" id="save">Save</button>
             </div>
           </div>
         </form>

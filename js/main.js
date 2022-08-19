@@ -6,6 +6,10 @@ var $entriesPage = document.querySelector('#entries-page');
 var $entriesButton = document.querySelector('#entries-button');
 var $entries = document.querySelector('#entries');
 var $new = document.getElementById('new');
+var $deleteEntry = document.querySelector('.delete-entry-div');
+var $myModal = document.querySelector('#myModal');
+var $cancel = document.querySelector('.cancel');
+var $confirm = document.querySelector('.confirm');
 
 $photoUrl.addEventListener('input', function (event) {
   $placeholder.style.setProperty('background-image', 'url(' + event.target.value + ')');
@@ -25,6 +29,7 @@ $entryForm.addEventListener('submit', function (event) {
     $entryForm.classList.add('hidden');
     data.entries.unshift(inputValues);
     $entries.prepend(renderEntry(inputValues));
+    data.view = 'entries';
   }
   if (data.editing !== null) {
     var entryObject = {};
@@ -114,6 +119,8 @@ function pageRefresh(string) {
     $entryForm.classList.remove('hidden');
     $entriesPage.classList.add('hidden');
   }
+  $myModal.classList.add('hidden');
+  $formId.reset();
 }
 
 $entries.addEventListener('click', function (event) {
@@ -127,8 +134,19 @@ $entries.addEventListener('click', function (event) {
     $placeholder.style.setProperty('background-image', 'url(' + entryObject.photoUrl + ')');
     $entriesPage.classList.add('hidden');
     $entryForm.classList.remove('hidden');
+    $deleteEntry.className = 'delete-entry-div';
   }
 });
+
+$deleteEntry.addEventListener('click', function (event) {
+  $myModal.classList.remove('hidden');
+});
+
+$cancel.addEventListener('click', function (event) {
+  $myModal.classList.add('hidden');
+});
+
+$confirm.addEventListener('click', confirmDelete);
 
 function getEntry(targetEntry) {
   var entryId = targetEntry.getAttribute('data-entry-id');
@@ -139,4 +157,28 @@ function getEntry(targetEntry) {
 
     }
   }
+}
+
+function confirmDelete(event) {
+  var entryListElement = data.editing;
+  var entryId = entryListElement.getAttribute('data-entry-id');
+
+  var list = document.querySelector('ul').children;
+  for (var i = 0; i < list.length; i++) {
+    if (list[i].getAttribute('data-entry-id') === entryId) {
+      list[i].remove();
+    }
+  }
+  for (i = 0; i < data.entries.length; i++) {
+    if (entryId === data.entries[i].entryId.toString()) {
+      data.entries.splice(i, 1);
+    }
+  }
+  data.editing = null;
+  $formId.reset();
+  $myModal.classList.add('hidden');
+  $placeholder.style.setProperty('background-image', 'url(/images/placeholder-image-square.jpg)');
+  $deleteEntry.classList.add('hidden');
+  $entriesPage.classList.remove('hidden');
+  $entryForm.classList.add('hidden');
 }

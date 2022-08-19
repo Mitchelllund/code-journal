@@ -28,13 +28,13 @@
     padding: 0 0.75rem;
   }
 
+  .head-column-full {
+    max-width: 890px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
   .column-half {
     width: 50%;
   }
-}
-
-.head-column-full {
-  max-width: 890px;
-  margin: 0 auto;
-  padding: 0 1.25rem;
 }
